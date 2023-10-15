@@ -3,7 +3,7 @@ package com.herron.exchange.integrations.generator.bitstamp.utils;
 import com.github.javafaker.Faker;
 import com.herron.exchange.common.api.common.enums.OrderExecutionTypeEnum;
 import com.herron.exchange.common.api.common.enums.OrderTypeEnum;
-import com.herron.exchange.common.api.common.model.Participant;
+import com.herron.exchange.common.api.common.messages.common.Participant;
 
 import java.util.List;
 import java.util.Random;

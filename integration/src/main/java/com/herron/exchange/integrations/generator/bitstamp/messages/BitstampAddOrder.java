@@ -2,7 +2,7 @@ package com.herron.exchange.integrations.generator.bitstamp.messages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.herron.exchange.common.api.common.enums.*;
-import com.herron.exchange.common.api.common.model.Participant;
+import com.herron.exchange.common.api.common.messages.common.Participant;
 import com.herron.exchange.integrations.generator.bitstamp.api.BitstampMessage;
 
 import java.util.Map;
