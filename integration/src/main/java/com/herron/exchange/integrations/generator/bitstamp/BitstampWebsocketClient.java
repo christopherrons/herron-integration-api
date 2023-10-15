@@ -10,16 +10,17 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
-
 public class BitstampWebsocketClient {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BitstampWebsocketClient.class);
     private final Map<BitstampWebsocketRequest, BitstampSubscription> requestToSubscription = new ConcurrentHashMap<>();
 
     public void subscribe(Consumer<BitstampMessage> messageConsumer, BitstampWebsocketRequest request) {
-        var subscription = new BitstampSubscription(messageConsumer, request);
-        subscription.subscribe();
-        requestToSubscription.put(request, subscription);
+        requestToSubscription.computeIfAbsent(request, k -> {
+            var subscription = new BitstampSubscription(messageConsumer, request);
+            subscription.subscribe();
+            return subscription;
+        });
     }
 
     public void destroy() {
