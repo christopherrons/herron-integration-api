@@ -13,6 +13,8 @@ This code base has multiple integrations to external data.
 
 ## Integrated Source
 
+Clients available:
+
 * `Bitstamp Websocket`: Live anonymous order and trade data for hundreds of trading pairs.
 * `Eurex Reference Data`: Eurex reference data for multiple products and contracts.
 
