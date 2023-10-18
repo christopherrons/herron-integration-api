@@ -20,7 +20,7 @@ public record BitstampAddOrder(OrderOperationEnum orderOperation,
                                long timeStampInMs,
                                String instrumentId,
                                String orderbookId,
-                               OrderExecutionTypeEnum orderExecutionType,
+                               TimeInForceEnum timeInForce,
                                OrderTypeEnum orderType,
                                OrderAddOperationTypeEnum addOperationType) implements BitstampMessage {
 
@@ -51,7 +51,7 @@ public record BitstampAddOrder(OrderOperationEnum orderOperation,
                 !data.isEmpty() ? Long.parseLong((String) data.get("microtimestamp")) / 1000 : -1L,
                 createInstrumentId(channel),
                 createOrderbookId(channel),
-                generateOrderExecutionType(),
+                generateTimeInForce(),
                 Double.parseDouble((String) data.get("price_str")) <= 99_999_999.0 ? OrderTypeEnum.LIMIT : OrderTypeEnum.MARKET,
                 OrderAddOperationTypeEnum.NEW_ORDER
         );

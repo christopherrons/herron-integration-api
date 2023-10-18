@@ -19,7 +19,7 @@ public record BitstampCancelOrder(OrderOperationEnum orderOperation,
                                   long timeStampInMs,
                                   String instrumentId,
                                   String orderbookId,
-                                  OrderExecutionTypeEnum orderExecutionType,
+                                  TimeInForceEnum timeInForceEnum,
                                   OrderTypeEnum orderType,
                                   OrderCancelOperationTypeEnum cancelOperationType) implements BitstampMessage {
 
@@ -50,7 +50,7 @@ public record BitstampCancelOrder(OrderOperationEnum orderOperation,
                 !data.isEmpty() ? Long.parseLong((String) data.get("microtimestamp")) / 1000 : -1L,
                 createInstrumentId(channel),
                 createOrderbookId(channel),
-                generateOrderExecutionType(),
+                generateTimeInForce(),
                 generateOrderType(),
                 OrderCancelOperationTypeEnum.KILLED
         );

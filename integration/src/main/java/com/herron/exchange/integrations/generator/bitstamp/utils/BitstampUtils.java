@@ -1,20 +1,24 @@
 package com.herron.exchange.integrations.generator.bitstamp.utils;
 
 import com.github.javafaker.Faker;
-import com.herron.exchange.common.api.common.enums.OrderExecutionTypeEnum;
 import com.herron.exchange.common.api.common.enums.OrderTypeEnum;
+import com.herron.exchange.common.api.common.enums.TimeInForceEnum;
 import com.herron.exchange.common.api.common.messages.common.Participant;
 
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import static com.herron.exchange.common.api.common.enums.OrderTypeEnum.LIMIT;
+import static com.herron.exchange.common.api.common.enums.OrderTypeEnum.MARKET;
+import static com.herron.exchange.common.api.common.enums.TimeInForceEnum.*;
+
 public class BitstampUtils {
     private static final Faker NAME_FAKER = new Faker();
     private static final List<String> USER_POOL = IntStream.range(0, 2000).mapToObj(k -> generateUser()).toList();
 
-    private static final List<OrderExecutionTypeEnum> ORDER_EXECUTION_TYPES = List.of(OrderExecutionTypeEnum.FOK, OrderExecutionTypeEnum.FAK, OrderExecutionTypeEnum.FILL);
-    private static final List<OrderTypeEnum> ORDER_TYPES = List.of(OrderTypeEnum.MARKET, OrderTypeEnum.LIMIT);
+    private static final List<TimeInForceEnum> TIME_IN_FORCE = List.of(FOK, FAK, FILL);
+    private static final List<OrderTypeEnum> ORDER_TYPES = List.of(MARKET, LIMIT);
     private static final Random RANDOM_UNIFORM = new Random();
 
     public static String createInstrumentId(String channel) {
@@ -29,8 +33,8 @@ public class BitstampUtils {
         return ORDER_TYPES.get(RANDOM_UNIFORM.nextInt(ORDER_TYPES.size()));
     }
 
-    public static OrderExecutionTypeEnum generateOrderExecutionType() {
-        return ORDER_EXECUTION_TYPES.get(RANDOM_UNIFORM.nextInt(ORDER_EXECUTION_TYPES.size()));
+    public static TimeInForceEnum generateTimeInForce() {
+        return TIME_IN_FORCE.get(RANDOM_UNIFORM.nextInt(TIME_IN_FORCE.size()));
     }
 
     public static String generateUser() {
