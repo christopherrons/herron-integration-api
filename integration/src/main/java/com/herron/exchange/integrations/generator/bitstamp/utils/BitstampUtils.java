@@ -17,7 +17,7 @@ public class BitstampUtils {
     private static final Faker NAME_FAKER = new Faker();
     private static final List<String> USER_POOL = IntStream.range(0, 2000).mapToObj(k -> generateUser()).toList();
 
-    private static final List<TimeInForceEnum> TIME_IN_FORCE = List.of(FOK, FAK, FILL);
+    private static final List<TimeInForceEnum> TIME_IN_FORCE = List.of(FOK, FAK, SESSION);
     private static final List<OrderTypeEnum> ORDER_TYPES = List.of(MARKET, LIMIT);
     private static final Random RANDOM_UNIFORM = new Random();
 

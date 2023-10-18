@@ -22,7 +22,7 @@ public record BitstampAddOrder(OrderOperationEnum orderOperation,
                                String orderbookId,
                                TimeInForceEnum timeInForce,
                                OrderTypeEnum orderType,
-                               OrderAddOperationTypeEnum addOperationType) implements BitstampMessage {
+                               OrderOperationCauseEnum orderOperationCauseEnum) implements BitstampMessage {
 
     /*  Json Structure example of Bitstamp Live Order
 {
@@ -44,7 +44,7 @@ public record BitstampAddOrder(OrderOperationEnum orderOperation,
         this(OrderOperationEnum.extractValue(event),
                 generateParticipant(),
                 !data.isEmpty() ? (String) data.get("id_str") : "NONE",
-                !data.isEmpty() ? OrderSideEnum.fromValue((int) data.get("order_type")) : OrderSideEnum.INVALID_ORDER_SIDE,
+                !data.isEmpty() ? OrderSideEnum.fromValue((int) data.get("order_type")) : null,
                 !data.isEmpty() ? Double.parseDouble((String) data.get("amount_str")) : -1.0,
                 !data.isEmpty() ? Double.parseDouble((String) data.get("amount_str")) : -1.0,
                 !data.isEmpty() ? Double.parseDouble((String) data.get("price_str")) : 0,
@@ -53,7 +53,7 @@ public record BitstampAddOrder(OrderOperationEnum orderOperation,
                 createOrderbookId(channel),
                 generateTimeInForce(),
                 Double.parseDouble((String) data.get("price_str")) <= 99_999_999.0 ? OrderTypeEnum.LIMIT : OrderTypeEnum.MARKET,
-                OrderAddOperationTypeEnum.NEW_ORDER
+                OrderOperationCauseEnum.NEW_ORDER
         );
     }
 }

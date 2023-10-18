@@ -21,7 +21,7 @@ public record BitstampCancelOrder(OrderOperationEnum orderOperation,
                                   String orderbookId,
                                   TimeInForceEnum timeInForceEnum,
                                   OrderTypeEnum orderType,
-                                  OrderCancelOperationTypeEnum cancelOperationType) implements BitstampMessage {
+                                  OrderOperationCauseEnum orderOperationCauseEnum) implements BitstampMessage {
 
     /*  Json Structure example of Bitstamp Live Order
 {
@@ -43,7 +43,7 @@ public record BitstampCancelOrder(OrderOperationEnum orderOperation,
         this(OrderOperationEnum.extractValue(event),
                 generateParticipant(),
                 !data.isEmpty() ? (String) data.get("id_str") : "NONE",
-                !data.isEmpty() ? OrderSideEnum.fromValue((int) data.get("order_type")) : OrderSideEnum.INVALID_ORDER_SIDE,
+                !data.isEmpty() ? OrderSideEnum.fromValue((int) data.get("order_type")) : null,
                 !data.isEmpty() ? Double.parseDouble((String) data.get("amount_str")) : -1.0,
                 !data.isEmpty() ? Double.parseDouble((String) data.get("amount_str")) : -1.0,
                 !data.isEmpty() ? Double.parseDouble((String) data.get("price_str")) : 0,
@@ -52,7 +52,7 @@ public record BitstampCancelOrder(OrderOperationEnum orderOperation,
                 createOrderbookId(channel),
                 generateTimeInForce(),
                 generateOrderType(),
-                OrderCancelOperationTypeEnum.KILLED
+                OrderOperationCauseEnum.KILLED
         );
     }
 }
