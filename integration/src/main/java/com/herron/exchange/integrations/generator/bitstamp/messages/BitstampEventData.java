@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
+import static com.herron.exchange.common.api.common.enums.OrderOperationEnum.*;
+
 public record BitstampEventData(@JsonProperty("data") Map<String, Object> data, @JsonProperty("channel") String channel, @JsonProperty("event") String event) {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BitstampSubscription.class);
@@ -30,7 +32,7 @@ public record BitstampEventData(@JsonProperty("data") Map<String, Object> data, 
 
     public BitstampAddOrder getAddOrder() {
         try {
-            return new BitstampAddOrder(data, channel, event);
+            return new BitstampAddOrder(data, channel, INSERT);
         } catch (Exception e) {
             LOGGER.warn("Unable to parse Order: Data: {}, Channel: {}, Event: {}", data, channel, event);
             return null;
@@ -39,7 +41,7 @@ public record BitstampEventData(@JsonProperty("data") Map<String, Object> data, 
 
     public BitstampUpdateOrder getUpdateOrder() {
         try {
-            return new BitstampUpdateOrder(data, channel, event);
+            return new BitstampUpdateOrder(data, channel, UPDATE);
         } catch (Exception e) {
             LOGGER.warn("Unable to parse Order: Data: {}, Channel: {}, Event: {}", data, channel, event);
             return null;
@@ -48,7 +50,7 @@ public record BitstampEventData(@JsonProperty("data") Map<String, Object> data, 
 
     public BitstampCancelOrder getCancelOrder() {
         try {
-            return new BitstampCancelOrder(data, channel, event);
+            return new BitstampCancelOrder(data, channel, CANCEL);
         } catch (Exception e) {
             LOGGER.warn("Unable to parse Order: Data: {}, Channel: {}, Event: {}", data, channel, event);
             return null;

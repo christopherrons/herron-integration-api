@@ -40,8 +40,8 @@ public record BitstampAddOrder(OrderOperationEnum orderOperation,
      "channel": "live_orders_xrpusd",
      "event": "order_deleted"
  }*/
-    public BitstampAddOrder(@JsonProperty("data") Map<String, Object> data, @JsonProperty("channel") String channel, @JsonProperty("event") String event) {
-        this(OrderOperationEnum.extractValue(event),
+    public BitstampAddOrder(@JsonProperty("data") Map<String, Object> data, @JsonProperty("channel") String channel, OrderOperationEnum orderOperation) {
+        this(orderOperation,
                 generateParticipant(),
                 !data.isEmpty() ? (String) data.get("id_str") : "NONE",
                 !data.isEmpty() ? OrderSideEnum.fromValue((int) data.get("order_type")) : null,
