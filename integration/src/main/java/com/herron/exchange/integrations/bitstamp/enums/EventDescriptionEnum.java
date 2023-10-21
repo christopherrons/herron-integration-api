@@ -1,4 +1,4 @@
-package com.herron.exchange.integrations.generator.bitstamp.enums;
+package com.herron.exchange.integrations.bitstamp.enums;
 
 import java.util.Map;
 

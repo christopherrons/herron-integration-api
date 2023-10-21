@@ -1,4 +1,4 @@
-package com.herron.exchange.integrations.generator.bitstamp.client;
+package com.herron.exchange.integrations.bitstamp.client;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

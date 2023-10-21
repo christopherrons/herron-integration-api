@@ -1,4 +1,4 @@
-package com.herron.exchange.integrations.generator.eurex.model;
+package com.herron.exchange.integrations.eurex.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,6 +18,7 @@ public record EurexProductData(@JsonProperty("data") Data data) {
 
     public record ProductInfo(
             @JsonProperty("ProductID") String productId,
+            @JsonProperty("Name") String name,
             @JsonProperty("Currency") String currency,
             @JsonProperty("Product") String product,
             @JsonProperty("TickValue") double tickValue,

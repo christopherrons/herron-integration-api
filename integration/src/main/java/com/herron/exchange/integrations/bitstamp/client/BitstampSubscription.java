@@ -1,8 +1,8 @@
-package com.herron.exchange.integrations.generator.bitstamp.client;
+package com.herron.exchange.integrations.bitstamp.client;
 
-import com.herron.exchange.integrations.generator.bitstamp.api.BitstampMessage;
-import com.herron.exchange.integrations.generator.bitstamp.messages.BitstampEventData;
-import com.herron.exchange.integrations.generator.bitstamp.model.BitstampWebsocketRequest;
+import com.herron.exchange.integrations.bitstamp.api.BitstampMessage;
+import com.herron.exchange.integrations.bitstamp.messages.BitstampEventData;
+import com.herron.exchange.integrations.bitstamp.model.BitstampWebsocketRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

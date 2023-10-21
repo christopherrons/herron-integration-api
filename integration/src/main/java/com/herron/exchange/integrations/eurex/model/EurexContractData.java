@@ -1,4 +1,4 @@
-package com.herron.exchange.integrations.generator.eurex.model;
+package com.herron.exchange.integrations.eurex.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.StringUtils;
@@ -29,10 +29,15 @@ public record EurexContractData(@JsonProperty("data") Data data) {
             @JsonProperty("OptionsDelta") String optionsDelta,
             @JsonProperty("ExerciseStyle") String exerciseStyle,
             @JsonProperty("ISIN") String isin,
+            @JsonProperty("ProductLine") String productLine,
             @JsonProperty("PreviousDaySettlementPrice") double previousDaySettlementPrice) {
 
         public boolean isOption() {
-            return StringUtils.isNotEmpty(strike);
+            return productLine.equals("OPTION") || productLine.equals("O");
+        }
+
+        public boolean isFuture() {
+            return productLine.equals("FUTURE") || productLine.equals("F");
         }
 
         public boolean isCall() {

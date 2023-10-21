@@ -1,7 +1,7 @@
-package com.herron.exchange.integrations.generator.bitstamp.messages;
+package com.herron.exchange.integrations.bitstamp.messages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.herron.exchange.integrations.generator.bitstamp.api.BitstampMessage;
+import com.herron.exchange.integrations.bitstamp.api.BitstampMessage;
 
 import java.util.Map;
 

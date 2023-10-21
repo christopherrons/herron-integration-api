@@ -1,8 +1,8 @@
-package com.herron.exchange.integrations.generator.bitstamp.client;
+package com.herron.exchange.integrations.bitstamp.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.herron.exchange.integrations.generator.bitstamp.messages.BitstampEventData;
+import com.herron.exchange.integrations.bitstamp.messages.BitstampEventData;
 
 public class BitstampJsonMessageDecoder {
     private final Class<? extends BitstampEventData> classToBeDecoded;

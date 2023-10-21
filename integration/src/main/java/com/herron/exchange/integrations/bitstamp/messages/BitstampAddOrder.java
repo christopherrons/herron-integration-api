@@ -1,27 +1,28 @@
-package com.herron.exchange.integrations.generator.bitstamp.messages;
+package com.herron.exchange.integrations.bitstamp.messages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.herron.exchange.common.api.common.enums.*;
 import com.herron.exchange.common.api.common.messages.common.Participant;
-import com.herron.exchange.integrations.generator.bitstamp.api.BitstampMessage;
+import com.herron.exchange.integrations.bitstamp.api.BitstampMessage;
 
 import java.util.Map;
 
-import static com.herron.exchange.integrations.generator.bitstamp.utils.BitstampUtils.*;
+import static com.herron.exchange.integrations.bitstamp.utils.BitstampUtils.*;
 
-public record BitstampCancelOrder(OrderOperationEnum orderOperation,
-                                  Participant participant,
-                                  String orderId,
-                                  OrderSideEnum orderSide,
-                                  double initialVolume,
-                                  double currentVolume,
-                                  double monetaryAmount,
-                                  long timeStampInMs,
-                                  String instrumentId,
-                                  String orderbookId,
-                                  TimeInForceEnum timeInForceEnum,
-                                  OrderTypeEnum orderType,
-                                  OrderOperationCauseEnum orderOperationCauseEnum) implements BitstampMessage {
+
+public record BitstampAddOrder(OrderOperationEnum orderOperation,
+                               Participant participant,
+                               String orderId,
+                               OrderSideEnum orderSide,
+                               double initialVolume,
+                               double currentVolume,
+                               double price,
+                               long timeStampInMs,
+                               String instrumentId,
+                               String orderbookId,
+                               TimeInForceEnum timeInForce,
+                               OrderTypeEnum orderType,
+                               OrderOperationCauseEnum orderOperationCauseEnum) implements BitstampMessage {
 
     /*  Json Structure example of Bitstamp Live Order
 {
@@ -39,7 +40,7 @@ public record BitstampCancelOrder(OrderOperationEnum orderOperation,
      "channel": "live_orders_xrpusd",
      "event": "order_deleted"
  }*/
-    public BitstampCancelOrder(@JsonProperty("data") Map<String, Object> data, @JsonProperty("channel") String channel, OrderOperationEnum orderOperation) {
+    public BitstampAddOrder(@JsonProperty("data") Map<String, Object> data, @JsonProperty("channel") String channel, OrderOperationEnum orderOperation) {
         this(orderOperation,
                 generateParticipant(),
                 !data.isEmpty() ? (String) data.get("id_str") : "NONE",
@@ -51,8 +52,8 @@ public record BitstampCancelOrder(OrderOperationEnum orderOperation,
                 createInstrumentId(channel),
                 createOrderbookId(channel),
                 generateTimeInForce(),
-                generateOrderType(),
-                OrderOperationCauseEnum.KILLED
+                Double.parseDouble((String) data.get("price_str")) <= 99_999_999.0 ? OrderTypeEnum.LIMIT : OrderTypeEnum.MARKET,
+                OrderOperationCauseEnum.NEW_ORDER
         );
     }
 }

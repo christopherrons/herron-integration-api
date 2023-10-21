@@ -1,8 +1,8 @@
-package com.herron.exchange.integrations.generator.bitstamp.messages;
+package com.herron.exchange.integrations.bitstamp.messages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.herron.exchange.integrations.generator.bitstamp.client.BitstampSubscription;
-import com.herron.exchange.integrations.generator.bitstamp.enums.EventDescriptionEnum;
+import com.herron.exchange.integrations.bitstamp.client.BitstampSubscription;
+import com.herron.exchange.integrations.bitstamp.enums.EventDescriptionEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

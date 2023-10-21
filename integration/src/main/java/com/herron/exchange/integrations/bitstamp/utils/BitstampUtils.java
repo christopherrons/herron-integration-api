@@ -1,4 +1,4 @@
-package com.herron.exchange.integrations.generator.bitstamp.utils;
+package com.herron.exchange.integrations.bitstamp.utils;
 
 import com.github.javafaker.Faker;
 import com.herron.exchange.common.api.common.enums.OrderTypeEnum;

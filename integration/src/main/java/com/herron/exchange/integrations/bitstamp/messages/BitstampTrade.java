@@ -1,12 +1,11 @@
-package com.herron.exchange.integrations.generator.bitstamp.messages;
+package com.herron.exchange.integrations.bitstamp.messages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.herron.exchange.common.api.common.messages.common.Participant;
-import com.herron.exchange.integrations.generator.bitstamp.api.BitstampMessage;
+import com.herron.exchange.integrations.bitstamp.api.BitstampMessage;
+import com.herron.exchange.integrations.bitstamp.utils.BitstampUtils;
 
 import java.util.Map;
-
-import static com.herron.exchange.integrations.generator.bitstamp.utils.BitstampUtils.*;
 
 public record BitstampTrade(Participant bidParticipant,
                             Participant askParticipant,
@@ -38,8 +37,8 @@ public record BitstampTrade(Participant bidParticipant,
     "event":"trade"
  }*/
     public BitstampTrade(@JsonProperty("data") Map<String, Object> data, @JsonProperty("channel") String channel, @JsonProperty("event") String event) {
-        this(generateParticipant(),
-                generateParticipant(),
+        this(BitstampUtils.generateParticipant(),
+                BitstampUtils.generateParticipant(),
                 !data.isEmpty() ? (String) data.get("id") : "-1",
                 !data.isEmpty() ? (String) data.get("buy_order_id") : "NONE",
                 !data.isEmpty() ? (String) data.get("sell_order_id") : "NONE",
@@ -47,8 +46,8 @@ public record BitstampTrade(Participant bidParticipant,
                 !data.isEmpty() ? Double.parseDouble((String) data.get("amount_str")) : -1.0,
                 !data.isEmpty() ? Double.parseDouble((String) data.get("price_str")) : 0,
                 !data.isEmpty() ? Long.parseLong((String) data.get("microtimestamp")) / 1000 : -1L,
-                createInstrumentId(channel),
-                createOrderbookId(channel)
+                BitstampUtils.createInstrumentId(channel),
+                BitstampUtils.createOrderbookId(channel)
         );
     }
 }

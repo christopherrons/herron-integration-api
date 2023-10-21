@@ -1,13 +1,12 @@
-package com.herron.exchange.integrations.generator.bitstamp.messages;
+package com.herron.exchange.integrations.bitstamp.messages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.herron.exchange.common.api.common.enums.*;
 import com.herron.exchange.common.api.common.messages.common.Participant;
-import com.herron.exchange.integrations.generator.bitstamp.api.BitstampMessage;
+import com.herron.exchange.integrations.bitstamp.api.BitstampMessage;
+import com.herron.exchange.integrations.bitstamp.utils.BitstampUtils;
 
 import java.util.Map;
-
-import static com.herron.exchange.integrations.generator.bitstamp.utils.BitstampUtils.*;
 
 public record BitstampUpdateOrder(OrderOperationEnum orderOperation,
                                   Participant participant,
@@ -41,17 +40,17 @@ public record BitstampUpdateOrder(OrderOperationEnum orderOperation,
  }*/
     public BitstampUpdateOrder(@JsonProperty("data") Map<String, Object> data, @JsonProperty("channel") String channel, OrderOperationEnum orderOperation) {
         this(orderOperation,
-                generateParticipant(),
+                BitstampUtils.generateParticipant(),
                 !data.isEmpty() ? (String) data.get("id_str") : "NONE",
                 !data.isEmpty() ? OrderSideEnum.fromValue((int) data.get("order_type")) : null,
                 !data.isEmpty() ? Double.parseDouble((String) data.get("amount_str")) : -1.0,
                 !data.isEmpty() ? Double.parseDouble((String) data.get("amount_str")) : -1.0,
                 !data.isEmpty() ? Double.parseDouble((String) data.get("price_str")) : 0,
                 !data.isEmpty() ? Long.parseLong((String) data.get("microtimestamp")) / 1000 : -1L,
-                createInstrumentId(channel),
-                createOrderbookId(channel),
-                generateTimeInForce(),
-                generateOrderType(),
+                BitstampUtils.createInstrumentId(channel),
+                BitstampUtils.createOrderbookId(channel),
+                BitstampUtils.generateTimeInForce(),
+                BitstampUtils.generateOrderType(),
                 OrderOperationCauseEnum.EXTERNAL_UPDATE
         );
     }
