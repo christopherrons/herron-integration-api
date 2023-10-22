@@ -22,11 +22,11 @@ public class BitstampUtils {
     private static final Random RANDOM_UNIFORM = new Random();
 
     public static String createInstrumentId(String channel) {
-        return String.format("stock_%s", channel);
+        return String.format("equity_%s", channel.split("_")[2]);
     }
 
     public static String createOrderbookId(String channel) {
-        return String.format("bitstamp_stock_%s", channel);
+        return String.format("bitstamp_%s", createInstrumentId(channel));
     }
 
     public static OrderTypeEnum generateOrderType() {
