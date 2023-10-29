@@ -20,6 +20,7 @@ public class NasdaqYieldCurveClient {
     }
 
     public TreasuryYieldData requestYieldCurveData(LocalDate from, LocalDate to) {
+        LOGGER.info("Fetching treasury yields from {} to {}", from, to);
         return getRequest(String.format("%s?start_date=%s?end_date=%s?api_key=%s", apiUrl, from.toString(), to.toString(), apiKey), TreasuryYieldData.class);
     }
 
