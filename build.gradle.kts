@@ -57,7 +57,7 @@ allprojects {
 
 dependencies {
     //Project Modules
-    implementation(project(":integration"))
+    implementation(project(":integrations"))
 
     implementation(libs.common.api)
     implementation(libs.common)
