@@ -21,6 +21,20 @@ public class EurexClientQueryUtil {
         return String.format("{\"query\":\"query{Holidays { date data { %s }}}\"}", data);
     }
 
+    public static String createProductQuery(String filter) {
+        String data = "    ProductID\\n" +
+                "    Currency\\n" +
+                "    Product\\n" +
+                "    UnderlyingName\\n" +
+                "    UnderlyingISIN\\n" +
+                "    TickSize\\n" +
+                "    TickValue\\n" +
+                "    ContractSize\\n" +
+                "    Name\\n" +
+                "    Underlying";
+        return String.format("{\"query\":\"query{ProductInfos {} { date data { %s }}}\"}", filter, data);
+    }
+
     public static String createProductQuery() {
         String data = "    ProductID\\n" +
                 "    Currency\\n" +

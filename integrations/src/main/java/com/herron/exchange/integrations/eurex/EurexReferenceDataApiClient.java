@@ -37,6 +37,11 @@ public class EurexReferenceDataApiClient {
                 .toList();
     }
 
+    public EurexProductData fetchProductData(String filter) {
+        LOGGER.info("Fetching product data.");
+        return postRequest(apiUrl, createProductQuery(filter), Map.of(API_KEY_HEADER, apiKey), EurexProductData.class);
+    }
+
     public EurexProductData fetchProductData() {
         LOGGER.info("Fetching product data.");
         return postRequest(apiUrl, createProductQuery(), Map.of(API_KEY_HEADER, apiKey), EurexProductData.class);
