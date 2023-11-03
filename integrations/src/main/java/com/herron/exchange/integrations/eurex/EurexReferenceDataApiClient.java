@@ -24,6 +24,11 @@ public class EurexReferenceDataApiClient {
         this.contractRequestLimit = eurexApiClientProperties.contractRequestLimit();
     }
 
+    public EurexContractData fetchContractData(String product) {
+        return postRequest(apiUrl, createContractQuery(product), Map.of(API_KEY_HEADER, apiKey), EurexContractData.class);
+
+    }
+
     public List<EurexContractData> fetchContractData(EurexProductData productData) {
         LOGGER.info("Fetching contract data.");
         return productData.data().productInfos().data().subList(0, contractRequestLimit).stream()

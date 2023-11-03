@@ -15,6 +15,7 @@ public record EurexContractData(@JsonProperty("data") Data data) {
 
     public record Contract(
             @JsonProperty("InstrumentID") String instrumentID,
+            @JsonProperty("Product") String product,
             @JsonProperty("ContractID") String contractID,
             @JsonProperty("ProductID") String productID,
             @JsonProperty("ContractSize") int contractSize,

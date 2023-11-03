@@ -38,6 +38,7 @@ public class EurexClientQueryUtil {
     public static String createContractQuery(String product) {
         String data = " InstrumentID\\n" +
                 "    ContractID\\n" +
+                "    Product\\n" +
                 "    ProductID\\n" +
                 "    ContractSize\\n" +
                 "    CallPut\\n" +
