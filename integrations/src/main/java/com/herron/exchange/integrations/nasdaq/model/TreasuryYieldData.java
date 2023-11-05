@@ -47,7 +47,7 @@ public record TreasuryYieldData(@JsonProperty("dataset") Dataset dataset) {
                     double[] yieldValues = new double[12];
 
                     for (int i = 1; i <= 12; i++) {
-                        yieldValues[i - 1] = (Double) dateData.get(i);
+                        yieldValues[i - 1] = ((Double) dateData.get(i)) / 100;
                     }
 
                     LocalDate[] maturities = Arrays.stream(NasdaqDataLinkMaturityDatesEnum.values())

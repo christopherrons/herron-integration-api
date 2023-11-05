@@ -20,6 +20,8 @@ public record EurexProductData(@JsonProperty("data") Data data) {
             @JsonProperty("ProductID") String productId,
             @JsonProperty("Name") String name,
             @JsonProperty("Currency") String currency,
+            @JsonProperty("ProductType") String productType,
+            @JsonProperty("ProductTypeCode") String productTypeCode,
             @JsonProperty("Product") String product,
             @JsonProperty("TickValue") double tickValue,
             @JsonProperty("TickSize") double tickSize,

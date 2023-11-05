@@ -24,6 +24,8 @@ public class EurexClientQueryUtil {
     public static String createProductQuery(String filter) {
         String data = "    ProductID\\n" +
                 "    Currency\\n" +
+                "    ProductType\\n" +
+                "    ProductTypeCode\\n" +
                 "    Product\\n" +
                 "    UnderlyingName\\n" +
                 "    UnderlyingISIN\\n" +
@@ -39,6 +41,8 @@ public class EurexClientQueryUtil {
         String data = "    ProductID\\n" +
                 "    Currency\\n" +
                 "    Product\\n" +
+                "    ProductType\\n" +
+                "    ProductTypeCode\\n" +
                 "    UnderlyingName\\n" +
                 "    UnderlyingISIN\\n" +
                 "    TickSize\\n" +
