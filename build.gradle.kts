@@ -7,15 +7,8 @@ plugins {
 // Project Configs
 allprojects {
     repositories {
+        mavenCentral()
         mavenLocal()
-        maven {
-            name = "bytesafe"
-            url = uri("https://herron.bytesafe.dev/maven/herron/")
-            credentials {
-                username = extra["username"] as String?
-                password = extra["password"] as String?
-            }
-        }
     }
 
     apply(plugin = "maven-publish")
@@ -41,14 +34,7 @@ allprojects {
                 from(components["java"])
             }
             repositories {
-                maven {
-                    name = "bytesafe"
-                    url = uri("https://herron.bytesafe.dev/maven/herron/")
-                    credentials {
-                        username = extra["username"] as String?
-                        password = extra["password"] as String?
-                    }
-                }
+                mavenLocal()
             }
         }
     }
@@ -73,6 +59,12 @@ dependencies {
     // External Test Libs
     testImplementation(testlibs.junit.jupiter.api)
     testImplementation(testlibs.junit.jupiter.engine)
+}
+
+tasks {
+    named("build") {
+        dependsOn(named("publishToMavenLocal"))
+    }
 }
 
 // Tasks
