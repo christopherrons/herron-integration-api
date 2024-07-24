@@ -7,7 +7,7 @@ dependencies {
     implementation(libs.tyrus.standalone.client)
     implementation(libs.javax.json.api)
     implementation(libs.javax.json)
-    implementation(libs.javafaker)
+    implementation(libs.datafaker)
     implementation(libs.commons.math)
     implementation(libs.spring.boot.starter.web)
 

@@ -26,6 +26,6 @@ public record EurexTradingHoursData(@JsonProperty("data") Data data) {
     }
 
     public Map<String, EurexTradingHoursData.TradingHour> getByProductId() {
-        return data().tradingHours().data().stream().collect(Collectors.toMap(EurexTradingHoursData.TradingHour::productId, Function.identity()));
+        return data().tradingHours().data().stream().collect(Collectors.toMap(EurexTradingHoursData.TradingHour::productId, Function.identity(), (o1, o2) -> o1));
     }
 }

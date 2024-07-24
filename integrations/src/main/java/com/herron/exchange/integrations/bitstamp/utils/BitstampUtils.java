@@ -1,9 +1,9 @@
 package com.herron.exchange.integrations.bitstamp.utils;
 
-import com.github.javafaker.Faker;
 import com.herron.exchange.common.api.common.enums.OrderTypeEnum;
 import com.herron.exchange.common.api.common.enums.TimeInForceEnum;
 import com.herron.exchange.common.api.common.messages.common.Participant;
+import net.datafaker.Faker;
 
 import java.util.List;
 import java.util.Random;
