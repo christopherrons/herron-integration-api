@@ -9,7 +9,7 @@ This code base has multiple integrations to external data.
 
 ## Requirements
 
-* Java 17
+* Java 21
 
 ## Integrated Source
 
