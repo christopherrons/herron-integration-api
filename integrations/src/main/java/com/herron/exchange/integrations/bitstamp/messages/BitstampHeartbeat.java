@@ -5,7 +5,8 @@ import com.herron.exchange.integrations.bitstamp.api.BitstampMessage;
 
 import java.util.Map;
 
-public record BitstampHeartbeat(@JsonProperty("data") Map<String, Object> data, @JsonProperty("channel") String channel, @JsonProperty("event") String event) implements BitstampMessage {
+public record BitstampHeartbeat(@JsonProperty("data") Map<String, Object> data, @JsonProperty("channel") String channel,
+                                @JsonProperty("event") String event) implements BitstampMessage {
 
     public boolean isSuccessful() {
         return data.get("status").equals("success");

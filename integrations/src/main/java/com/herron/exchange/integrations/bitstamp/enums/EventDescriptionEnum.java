@@ -16,21 +16,20 @@ public enum EventDescriptionEnum {
     FORCED_RECONNECT("bts:request_reconnect"),
     HEART_BEAT("bts:heartbeat");
 
-    private final String eventDescription;
-
     private static final Map<String, EventDescriptionEnum> VALUES_BY_IDENTIFIER = stream(EventDescriptionEnum.values()).
             collect(toMap(EventDescriptionEnum::getEventDescription, identity()));
+    private final String eventDescription;
 
 
     EventDescriptionEnum(String eventDescription) {
         this.eventDescription = eventDescription;
     }
 
-    public String getEventDescription() {
-        return eventDescription;
-    }
-
     public static EventDescriptionEnum getEventDescriptionEnum(String eventDescription) {
         return VALUES_BY_IDENTIFIER.getOrDefault(eventDescription, INVALID_EVENT_DESCRIPTION);
+    }
+
+    public String getEventDescription() {
+        return eventDescription;
     }
 }

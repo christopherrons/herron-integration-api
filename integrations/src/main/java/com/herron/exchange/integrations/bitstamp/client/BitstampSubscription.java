@@ -25,9 +25,9 @@ public class BitstampSubscription implements MessageHandler.Whole<String> {
     private final String channel;
     private final URI uri;
     private final Consumer<BitstampMessage> messageConsumer;
+    private final ScheduledExecutorService heartBeatExecutorService = Executors.newScheduledThreadPool(1);
     private Session session;
     private boolean isSubscribed = false;
-    private final ScheduledExecutorService heartBeatExecutorService = Executors.newScheduledThreadPool(1);
 
     public BitstampSubscription(Consumer<BitstampMessage> messageConsumer, BitstampWebsocketRequest request) {
         this.messageConsumer = messageConsumer;
