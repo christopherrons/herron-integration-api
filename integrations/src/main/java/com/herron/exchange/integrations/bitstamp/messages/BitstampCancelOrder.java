@@ -15,11 +15,11 @@ public record BitstampCancelOrder(OrderOperationEnum orderOperation,
                                   OrderSideEnum orderSide,
                                   double initialVolume,
                                   double currentVolume,
-                                  double monetaryAmount,
+                                  double price,
                                   long timeStampInMs,
                                   String instrumentId,
                                   String orderbookId,
-                                  TimeInForceEnum timeInForceEnum,
+                                  TimeInForceEnum timeInForce,
                                   OrderTypeEnum orderType,
                                   OrderOperationCauseEnum orderOperationCauseEnum) implements BitstampMessage {
 

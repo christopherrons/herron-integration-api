@@ -30,6 +30,15 @@ public record BitstampEventData(@JsonProperty("data") Map<String, Object> data, 
         return event;
     }
 
+    public BitstampAddOrder getSnapshot() {
+        try {
+            return new BitstampAddOrder(data, channel, INSERT);
+        } catch (Exception e) {
+            LOGGER.warn("Unable to parse Order: Data: {}, Channel: {}, Event: {}", data, channel, event);
+            return null;
+        }
+    }
+
     public BitstampAddOrder getAddOrder() {
         try {
             return new BitstampAddOrder(data, channel, INSERT);

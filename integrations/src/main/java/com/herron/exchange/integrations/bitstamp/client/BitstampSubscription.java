@@ -152,6 +152,7 @@ public class BitstampSubscription implements MessageHandler.Whole<String> {
             case ORDER_CREATED -> messageConsumer.accept(event.getAddOrder());
             case ORDER_UPDATED -> messageConsumer.accept(event.getUpdateOrder());
             case ORDER_DELETED -> messageConsumer.accept(event.getCancelOrder());
+            case DATA -> messageConsumer.accept(event.getAddOrder());
             case TRADE -> messageConsumer.accept(event.getTrade());
             default -> LOGGER.warn("Unhandled Bitstamp event received {}: ", event);
         }

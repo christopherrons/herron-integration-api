@@ -18,7 +18,7 @@ public record BitstampUpdateOrder(OrderOperationEnum orderOperation,
                                   long timeStampInMs,
                                   String instrumentId,
                                   String orderbookId,
-                                  TimeInForceEnum timeInForceEnum,
+                                  TimeInForceEnum timeInForce,
                                   OrderTypeEnum orderType,
                                   OrderOperationCauseEnum orderOperationCauseEnum) implements BitstampMessage {
 

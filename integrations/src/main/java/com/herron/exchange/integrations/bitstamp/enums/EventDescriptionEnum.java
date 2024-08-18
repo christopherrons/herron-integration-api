@@ -12,6 +12,7 @@ public enum EventDescriptionEnum {
     ORDER_DELETED("order_deleted"),
     ORDER_UPDATED("order_changed"),
     TRADE("trade"),
+    DATA("data"),
     SUBSCRIPTION_SUCCEEDED("bts:subscription_succeeded"),
     FORCED_RECONNECT("bts:request_reconnect"),
     HEART_BEAT("bts:heartbeat");
