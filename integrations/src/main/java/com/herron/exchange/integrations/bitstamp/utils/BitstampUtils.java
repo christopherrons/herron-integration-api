@@ -22,7 +22,8 @@ public class BitstampUtils {
     private static final Random RANDOM_UNIFORM = new Random();
 
     public static String createInstrumentId(String channel) {
-        return String.format("equity_%s", channel.split("_")[2]);
+        int index = channel.lastIndexOf('_');
+        return String.format("equity_%s", channel.substring(index + 1));
     }
 
     public static String createOrderbookId(String channel) {
@@ -46,7 +47,7 @@ public class BitstampUtils {
     }
 
     public static Participant generateParticipant() {
-        return new Participant("Bistamp", generateUser());
+        return new Participant("Bitstamp", generateUser());
     }
 
 }

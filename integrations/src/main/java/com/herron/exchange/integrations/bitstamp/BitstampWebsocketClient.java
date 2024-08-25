@@ -1,30 +1,22 @@
 package com.herron.exchange.integrations.bitstamp;
 
-import com.herron.exchange.integrations.bitstamp.api.BitstampMessage;
-import com.herron.exchange.integrations.bitstamp.client.BitstampSubscription;
-import com.herron.exchange.integrations.bitstamp.model.BitstampWebsocketRequest;
+import com.herron.exchange.common.api.common.websocket.WebsocketHandler;
+import com.herron.exchange.common.api.common.websocket.api.WebsocketRequest;
+import com.herron.exchange.common.api.common.websocket.api.WebsocketSession;
+import com.herron.exchange.integrations.bitstamp.client.BitstampWebsocketSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Consumer;
-
-public class BitstampWebsocketClient {
+public class BitstampWebsocketClient extends WebsocketHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BitstampWebsocketClient.class);
-    private final Map<BitstampWebsocketRequest, BitstampSubscription> requestToSubscription = new ConcurrentHashMap<>();
 
-    public void subscribe(Consumer<BitstampMessage> messageConsumer, BitstampWebsocketRequest request) {
-        requestToSubscription.computeIfAbsent(request, k -> {
-            var subscription = new BitstampSubscription(messageConsumer, request);
-            subscription.subscribe();
-            return subscription;
-        });
+    public BitstampWebsocketClient() {
+        super();
     }
 
-    public void destroy() {
-        requestToSubscription.values().forEach(BitstampSubscription::unsubscribe);
+    @Override
+    protected WebsocketSession createSession(WebsocketRequest request) {
+        return new BitstampWebsocketSession(request.uri());
     }
-
 }
